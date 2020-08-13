@@ -29,7 +29,7 @@ import reactor.core.publisher.Mono;
 import javax.annotation.PostConstruct;
 import java.util.*;
 
-@Configuration
+//@Configuration
 public class GatewayConfiguration {
 
     private final List<ViewResolver> viewResolvers;

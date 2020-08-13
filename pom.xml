@@ -48,6 +48,21 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<dependencies>
+		<!-- sleuth 链路追踪 数据 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+
+		<!-- zipkin 链路追踪 数据收集展现 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+
+	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

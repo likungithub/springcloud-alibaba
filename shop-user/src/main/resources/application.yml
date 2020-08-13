@@ -15,3 +15,11 @@ spring:
         hbm2ddl:
           auto: update
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+#rocket
+rocketmq:
+  name-server: 192.168.10.105:9876

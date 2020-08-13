@@ -7,12 +7,12 @@ import com.sonder.service.OrderService;
 import com.sonder.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 
 import java.util.List;
 import java.util.Random;
@@ -32,6 +32,9 @@ public class OrderController {
 
     @Autowired
     private DiscoveryClient discoveryClient;
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
     @GetMapping("/order/prod/{pid}")
     public Order product(@PathVariable("pid")Integer pid){
@@ -61,6 +64,10 @@ public class OrderController {
         order.setNumber(1);
 
         orderService.save(order);
+
+        //向mq中投递一个消息
+        //1.指定topic 2.消息体
+        rocketMQTemplate.convertAndSend("order-topic",order);
 
         return order;
     }

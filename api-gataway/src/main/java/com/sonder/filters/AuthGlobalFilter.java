@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
  * 自定义全局过滤器（作用是 统一鉴权）
  * 要求：必须实现两个接口并实现其方法
  */
-@Component
+//@Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     //过滤器逻辑
