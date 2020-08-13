@@ -30,7 +30,7 @@ public class OrderController2 {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @GetMapping("/order/prod/{pid}")
+    @GetMapping("/order2/prod/{pid}")
     public Order product(@PathVariable("pid")Integer pid){
         log.info(">>客户下单，这时候要调用商品微服务查询商品信息");
 
@@ -64,7 +64,7 @@ public class OrderController2 {
     }
 
     //测试高并发
-    @RequestMapping("/order/message")
+    @RequestMapping("/order2/message")
     public String message(){
         return "测试高并发";
     }

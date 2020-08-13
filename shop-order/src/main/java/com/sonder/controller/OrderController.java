@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.Random;
 
-//@RestController
+@RestController
 @Slf4j
 public class OrderController {
 
@@ -42,6 +42,13 @@ public class OrderController {
 
         Product product = productService.findByPid(pid);
 
+        if (product.getPid() == -100){
+            Order order = new Order();
+            order.setOid(-100L);
+            order.setPname("下单失败");
+            return order;
+        }
+
         log.info(">>商品信息，查询结果：" + JSON.toJSONString(product));
 
         Order order = new Order();
@@ -56,6 +63,11 @@ public class OrderController {
         orderService.save(order);
 
         return order;
+    }
+
+    @GetMapping("test")
+    public String test(){
+        return "test";
     }
 
     /*@GetMapping("/order/prod/{pid}")

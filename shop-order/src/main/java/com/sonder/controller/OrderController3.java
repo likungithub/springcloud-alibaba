@@ -33,5 +33,9 @@ public class OrderController3 {
     @SentinelResource("message3")//注意这里必须使用这个注解标识,热点规则不生效
     public String message3(String name, Integer age) { return name + age; }
 
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("user.home"));
+    }
+
 
 }
