@@ -23,10 +23,16 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!--nacos客户端-->
+        <!--nacos服务治理中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- nacos服务配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-nacos-config</artifactId>
         </dependency>
 
     </dependencies>
