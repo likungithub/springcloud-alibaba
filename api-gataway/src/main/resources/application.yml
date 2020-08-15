@@ -1,0 +1,40 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: api-gateway
+  sleuth:
+    sampler:
+      probability: 1.0  #采样百分比
+  zipkin:
+    base-url: http://127.0.0.1:9411/  #zipkin server的请求地址
+    discovery-client-enabled: false #让nacos把它当成一个URL，而不要当做资源名
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #将gateway注册到nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true #让gateway从nacos中获取服务信息
+      routes:  #如果不配置，有默认路由，即微服务名称加url
+        - id: product_route
+          #uri: http://localhost:8081
+          uri: lb://service-product  #lb指负载均衡，微服务在nacos中的名称
+          order: 1
+          predicates:
+            - Path=/product-serv/**
+            # - Before=2020-11-28T00:00:00.000+08:00 #限制请求时间在2020-11-28之前
+            # - Method=POST  #内置的断言
+            # - Age=18,60  # 限制年龄只有在18到60岁之间的人能访问
+          filters:
+            - StripPrefix=1
+            # - SetStatus=250  #内置的过滤器
+            # - Log=true,false
+        - id: order_route
+          uri: lb://service-order  #lb指负载均衡，微服务在nacos中的名称
+          order: 1
+          predicates:
+            - Path=/order-serv/**
+          filters:
+            - StripPrefix=1
