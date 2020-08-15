@@ -8,6 +8,7 @@
         <module>shop-product</module>
 		<module>shop-order</module>
 		<module>api-gataway</module>
+		<module>shop-common</module>
 	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
